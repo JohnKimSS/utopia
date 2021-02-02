@@ -3,6 +3,7 @@ package com.ss.jan21.utopia.dao;
 import com.ss.jan21.utopia.model.Airplane;
 import org.springframework.stereotype.Component;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,12 +12,11 @@ import java.util.List;
 @Component
 public class AirplaneDao extends DbConnect<Airplane> {
 
-    public Airplane getAirplaneById(int airplaneId) {
-        Airplane airplane = new Airplane();
-        airplane.setAirplaneId(airplaneId);
-        airplane.setAirplaneType("type"+airplaneId);
-        return airplane;
+    public AirplaneDao(Connection conn) {
+        super(conn);
     }
+
+
     public void createAirplane(Airplane airplane) throws ClassNotFoundException, SQLException {
         save("insert into airplane (type_id) values (?)", new Object[] { airplane.getAirplaneType().getId() });
     }
@@ -36,6 +36,10 @@ public class AirplaneDao extends DbConnect<Airplane> {
 
     public List<Airplane> getAllAirplanesByType(Integer typeId) throws ClassNotFoundException, SQLException {
         return read("select * from airplane where type_id = ?", new Object[] { typeId });
+    }
+
+    public Airplane getAirplaneById(int airplaneId) throws ClassNotFoundException, SQLException {
+        return (Airplane) read("select * from airplane where id = ?", new Object[] { airplaneId });
     }
 
     @Override
