@@ -11,8 +11,8 @@ public class AirplaneService {
     @Autowired
     AirplaneDao airplaneDao;
 
-    public Airplane getAirplaneById(int id) {
-        return airplaneDao.getAirplaneById(id);
+    public Airplane getAirplaneById(int airplaneId) {
+        return airplaneDao.getAirplaneById(airplaneId);
     }
 
 }
