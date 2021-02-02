@@ -1,6 +1,7 @@
 package com.ss.jan21.utopia.dao;
 
 import com.ss.jan21.utopia.model.Airplane;
+import com.ss.jan21.utopia.model.AirplaneType;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
@@ -12,22 +13,17 @@ import java.util.List;
 @Component
 public class AirplaneDao extends DbConnect<Airplane> {
 
-    public AirplaneDao(Connection conn) {
-        super(conn);
-    }
-
-
     public void createAirplane(Airplane airplane) throws ClassNotFoundException, SQLException {
-        save("insert into airplane (type_id) values (?)", new Object[] { airplane.getAirplaneType().getId() });
+        save("insert into airplane (type_id) values (?)", new Object[] { airplane.getAirplaneType().getTypeId() });
     }
 
     public void updateAirplane(Airplane airplane) throws ClassNotFoundException, SQLException {
         save("update airplane set type_id =? where id = ?",
-                new Object[] { airplane.getAirplaneType().getId(), airplane.getId() });
+                new Object[] { airplane.getAirplaneType().getTypeId(), airplane.getAirplaneId() });
     }
 
     public void deleteAirplane(Airplane airplane) throws ClassNotFoundException, SQLException {
-        save("delete from airplane id = ?", new Object[] { airplane.getId() });
+        save("delete from airplane id = ?", new Object[] { airplane.getAirplaneId() });
     }
 
     public List<Airplane> getAllAirplanes() throws ClassNotFoundException, SQLException {
@@ -47,8 +43,8 @@ public class AirplaneDao extends DbConnect<Airplane> {
         List<Airplane> airplanes = new ArrayList<>();
         while (rs.next()) {
             Airplane airplane = new Airplane();
-            airplane.getAirplaneType().setId(rs.getInt("type_id"));
-            airplane.setId(rs.getInt("id"));
+            airplane.getAirplaneType().setTypeId(rs.getInt("type_id"));
+            airplane.setAirplaneId(rs.getInt("id"));
 
             airplanes.add(airplane);
         }
