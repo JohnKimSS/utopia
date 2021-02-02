@@ -7,8 +7,6 @@ public class Airplane {
     int typeId;
     int maxCapacity;
 
-
-
     @java.lang.Override
     public java.lang.String toString() {
         return "Airplane{" +
