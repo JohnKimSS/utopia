@@ -1,5 +1,7 @@
 package com.ss.jan21.utopia.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +15,7 @@ public abstract class DbConnect<T> {
 
     protected static Connection conn = null;
 
-    public DbConnect(Connection cxn) {
+    public DbConnect(Connection conn) {
         this.conn = conn;
     }
 
