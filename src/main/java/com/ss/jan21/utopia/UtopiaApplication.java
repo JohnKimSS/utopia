@@ -1,4 +1,4 @@
-package com.ss.springboot.utopia;
+package com.ss.jan21.utopia;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
