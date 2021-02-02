@@ -10,6 +10,6 @@ public class AirplaneDao {
         Airplane airplane = new Airplane();
         airplane.setAirplaneId(id);
         airplane.setAirplaneType("type"+id);
-        return null;
+        return airplane;
     }
 }
