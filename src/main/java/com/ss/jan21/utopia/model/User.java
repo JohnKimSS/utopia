@@ -2,6 +2,7 @@ package com.ss.jan21.utopia.model;
 
 public class User {
 
+    UserRole userRole;
     int userId;
     int roleId;
     String givenName;
@@ -21,7 +22,13 @@ public class User {
         this.password = password;
         this.phone = phone;
     }
+    public UserRole getUserRole() {
+        return userRole;
+    }
 
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
     public int getUserId() {
         return userId;
     }
